@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -6,7 +7,7 @@ const Container = styled.div`
   text-align: center;
   flex-direction: column;
   border-radius: 10px;
-  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.5);
   margin: 10px 0;
 `;
 
@@ -56,12 +57,14 @@ const Task = ({ props }) => {
     console.log(props);
   };
 
+  const doneTask = (props) => {};
+
   return (
     <Container key={props.id}>
       <WrapperTitle>
         <h2> Title: {props.task}</h2>
         <div>
-          <ButtonDone>done</ButtonDone>
+          <ButtonDone onClick={() => doneTask(props)}>done</ButtonDone>
           <ButtonDelete onClick={() => deleteTask(props)}>delete</ButtonDelete>
         </div>
       </WrapperTitle>

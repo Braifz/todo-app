@@ -7,7 +7,7 @@ import ShortUniqueId from "short-unique-id";
 import Task from "./Task";
 
 const Container = styled.div`
-  width: 80%;
+  width: 90%;
   min-height: 80vh;
   background-color: #fff;
   height: auto;
@@ -25,7 +25,11 @@ const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 10px;
+  padding: 10px;
   align-items: center;
+  background-color: #222;
+  color: white;
 `;
 
 const InputField = styled(Field)`
@@ -40,14 +44,17 @@ const InputField = styled(Field)`
 const Button = styled.button`
   width: 100px;
   height: 40px;
-  background-color: #111;
+  background-color: #fff;
   font-size: 1rem;
-  color: white;
+  color: black;
   border: none;
   border-radius: 5px;
+  margin: 10px;
   cursor: pointer;
   &:hover {
-    background-color: #333;
+    background-color: #222;
+    color: white;
+    border: 2px solid white;
   }
 `;
 
@@ -63,6 +70,7 @@ const TodoApp = () => {
         id: uid(),
         task: e.task.trim(),
         text: e.text.trim(),
+        completed: false,
       },
     ]);
     console.log(task);
