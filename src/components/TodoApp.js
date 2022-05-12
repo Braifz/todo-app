@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import styled from "styled-components";
 import { Formik, Form, Field } from "formik";
 import "../styles/field.css";
-import ShortUniqueId from "short-unique-id";
 
 import Task from "./Task";
+import { initialState, taskReducer } from "../reducers/task";
 
 const Container = styled.div`
   width: 90%;
@@ -59,40 +59,41 @@ const Button = styled.button`
 `;
 
 const TodoApp = () => {
-  const [task, setTask] = useState([]);
-
-  const uid = new ShortUniqueId();
+  const [state, dispatch] = useReducer(taskReducer, initialState);
 
   const addTask = (e) => {
-    setTask([
-      ...task,
-      {
-        id: uid(),
-        task: e.task.trim(),
-        text: e.text.trim(),
-        completed: false,
-      },
-    ]);
-    console.log(task);
+    dispatch({ type: "SET_TASK", payload: e });
+    console.log(state);
+  };
+
+  const doneTask = (id) => {
+    dispatch({ type: "DONE_TASK", payload: id });
+  };
+  const deleteTask = (id) => {
+    console.log(id);
+    dispatch({ type: "DELETE_TASK", payload: id });
   };
 
   return (
     <Container>
       <FormWrapper>
         <h1>Add Task</h1>
-        <Formik initialValues={{ task: "", text: "" }} onSubmit={addTask}>
+        <Formik
+          initialValues={{ title: "", description: "" }}
+          onSubmit={addTask}
+        >
           <Form>
             <Field
               className="field"
               type="text"
               placeholder="New task"
-              name="task"
+              name="title"
             />
             <Field
               className="field"
               type="textarea"
-              placeholder="New text"
-              name="text"
+              placeholder="Add description"
+              name="description"
             />
             <div className="button-wrap">
               <Button type="submit">Add</Button>
@@ -101,9 +102,13 @@ const TodoApp = () => {
         </Formik>
       </FormWrapper>
       <div>
-        {task.map((e) => (
-          <Task props={e} />
-        ))}
+        {state.tasks?.length > 0 ? (
+          state.tasks.map((task) => (
+            <Task task={task} key={task.id} deleteTask={deleteTask} />
+          ))
+        ) : (
+          <h3>No hay tareas</h3>
+        )}
       </div>
     </Container>
   );
