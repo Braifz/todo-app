@@ -52,24 +52,22 @@ const ButtonDelete = styled(Button)`
   }
 `;
 
-const Task = ({ props }) => {
-  const deleteTask = (props) => {
-    console.log(props);
-  };
-
-  const doneTask = (props) => {};
+const Task = ({ task, deleteTask }) => {
+  const doneTask = () => {};
 
   return (
-    <Container key={props.id}>
+    <Container>
       <WrapperTitle>
-        <h2> Title: {props.task}</h2>
+        <h2> Title: {task.title}</h2>
         <div>
-          <ButtonDone onClick={() => doneTask(props)}>done</ButtonDone>
-          <ButtonDelete onClick={() => deleteTask(props)}>delete</ButtonDelete>
+          <ButtonDone onClick={() => doneTask(task.id)}>done</ButtonDone>
+          <ButtonDelete onClick={() => deleteTask(task.id)}>
+            delete
+          </ButtonDelete>
         </div>
       </WrapperTitle>
       <TextWrap>
-        <p> Task: {props.text}</p>
+        <p> Task: {task.description}</p>
       </TextWrap>
     </Container>
   );
