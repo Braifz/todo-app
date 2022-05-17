@@ -1,39 +1,26 @@
 import { TASKS } from "../actions/task";
-import ShortUniqueId from "short-unique-id";
-
-const uid = new ShortUniqueId({ length: 10 });
 
 export const initialState = {
-  tasks: [
-    {
-      id: null,
-      title: "",
-      description: "",
-      completed: false,
-    },
-  ],
+  tasks: [],
 };
 
 export const taskReducer = (state = initialState, action) => {
   switch (action.type) {
     case TASKS.SET_TASK:
       return {
-        tasks: [
-          ...state.tasks,
-          {
-            id: uid(),
-            title: action.payload.title,
-            description: action.payload.description,
-            completed: false,
-          },
-        ],
+        ...state,
+        tasks: [...state.tasks, action.payload],
       };
-    case TASKS.DELETE_TASK: {
-      const newTasks = state.tasks.filter(
-        (task) => task.id !== action.payload.id
-      );
+    case TASKS.DONE_TASK: {
       return {
-        tasks: [...state.tasks, newTasks],
+        ...state,
+      };
+    }
+    case TASKS.DELETE_TASK: {
+      const newTasks = state.tasks.filter((task) => task.id !== action.payload);
+      console.log(action.payload);
+      return {
+        tasks: [...newTasks],
       };
     }
     default:
