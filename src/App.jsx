@@ -7,7 +7,7 @@ function App() {
     <div>
       <Layout>
         <TodoApp />
-        <button onClick={getTasks}> click</button>
+        {/* <button onClick={getTasks}> click</button> */}
       </Layout>
     </div>
   );
