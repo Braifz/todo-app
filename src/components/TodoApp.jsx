@@ -51,6 +51,11 @@ const Button = styled.button`
   }
 `;
 
+const Title = styled.h1`
+  font-size: 2rem;
+  padding: 15px;
+`;
+
 const TodoApp = () => {
   const [state, dispatch] = useReducer(taskReducer, initialState);
   const [task, setTask] = useState({ title: "", description: "" });
@@ -85,18 +90,17 @@ const TodoApp = () => {
     setTask({ title: "", description: "" });
   };
 
-  console.log(state);
   return (
     <Container>
       <FormWrapper>
-        <h1>Add Task</h1>
+        <Title>Add Task</Title>
         <Formik initialValues={task} onSubmit={addTask}>
           <Form>
             <Field
               className="field"
               type="text"
               value={task.title}
-              placeholder="New task"
+              placeholder="Title task"
               name="title"
               onChange={handleTaskTitle}
             />
@@ -104,7 +108,7 @@ const TodoApp = () => {
               className="field"
               value={task.description}
               type="textarea"
-              placeholder="Add description"
+              placeholder="Description task"
               name="description"
               onChange={handleTaskDescription}
             />
