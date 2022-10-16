@@ -3,12 +3,14 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   width: 100%;
-  background-color: #eee;
   text-align: center;
   flex-direction: column;
+  background-color: #fafafa;
   border-radius: 10px;
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.5);
   margin: 10px 0;
+  border: ${(props) =>
+    props.completed ? "10px solid green" : "10px solid black"};
 `;
 
 const WrapperTitle = styled.div`
@@ -58,9 +60,9 @@ const ButtonDelete = styled(Button)`
   }
 `;
 
-const Task = ({ id, title, description, deleteTask, doneTask }) => {
+const Task = ({ id, title, description, deleteTask, doneTask, completed }) => {
   return (
-    <Container>
+    <Container completed={completed}>
       <WrapperTitle>
         <h2> {title}</h2>
         <div>
