@@ -3,18 +3,15 @@ import styled from "styled-components";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Container = styled.div`
-  min-height: 100vh;
-`;
+const Container = styled.div``;
 
 const WrapperFooter = styled.div`
   width: 100%;
-  position: relative;
-  bottom: 0;
 `;
 
 const Main = styled.div`
   margin: 20px;
+  min-height: 100vh;
   display: flex;
   align-content: center;
   justify-content: center;
