@@ -12,13 +12,14 @@ export const taskReducer = (state = initialState, action) => {
         tasks: [...state.tasks, action.payload],
       };
     case TASKS.DONE_TASK: {
+      const findTask = state.tasks.find((task) => task.id === action.payload);
+      findTask.completed = true;
       return {
-        ...state,
+        tasks: [...state.tasks],
       };
     }
     case TASKS.DELETE_TASK: {
       const newTasks = state.tasks.filter((task) => task.id !== action.payload);
-      console.log(action.payload);
       return {
         tasks: [...newTasks],
       };
