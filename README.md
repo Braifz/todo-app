@@ -1,4 +1,4 @@
-## Todo app made with React, Formik, styled-components
+## Todo app made with React, Formik, styled-components and Context
 
 ```
   git clone git@github.com:Braifz/todo-app.git
