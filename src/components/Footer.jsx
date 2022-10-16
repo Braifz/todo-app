@@ -4,9 +4,10 @@ const Container = styled.div`
   width: 100%;
   background-color: #111;
   color: white;
-  display: flex;
   text-align: center;
+  display: flex;
   justify-content: center;
+  padding-top: 15px;
   height: 50px;
 `;
 
