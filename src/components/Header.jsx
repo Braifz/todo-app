@@ -4,18 +4,21 @@ const Wrapper = styled.div`
   width: 100%;
   background-color: #111;
   color: white;
-  margin: 0;
-  padding: 0;
-  height: 70px;
+  height: 100px;
   display: flex;
-  text-align: center;
+  align-items: center;
   justify-content: center;
+`;
+
+const Title = styled.h1`
+  font-size: 2rem;
+  border-bottom: 1px solid white;
 `;
 
 const Header = () => {
   return (
     <Wrapper>
-      <h2>Todo App</h2>
+      <Title>Todo App</Title>
     </Wrapper>
   );
 };
